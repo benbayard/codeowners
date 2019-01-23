@@ -8,7 +8,26 @@ interface Codeowners {
   new (cwd?: string): CodeownersFile;
 }
 
+interface Entry {
+  /**
+   * The path to the entry
+   */
+  path: string;
+  /**
+   * The list of usernames attached to the file
+   */
+  usernames: string[];
+  /**
+   * Determine if a file path matches this entry. 
+   */
+  match: (filePath: string) => boolean;
+}
+
 interface CodeownersFile {
+  /**
+   * The list of all files 
+   */
+  readonly ownerEntries: Entry[]
   /**
    * The codeowners file found as a parent of the cwd
    */
